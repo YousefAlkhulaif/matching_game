@@ -8,7 +8,23 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      builder: (BuildContext context, Widget child) {
+        return new Directionality(
+          textDirection: TextDirection.rtl,
+          child: new Builder(
+            builder: (BuildContext context) {
+              return new MediaQuery(
+                data: MediaQuery.of(context).copyWith(
+                  textScaleFactor: 1.0,
+                ),
+                child: child,
+              );
+            },
+          ),
+        );
+      },
       theme: ThemeData(
+        brightness: Brightness.light,
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -71,41 +87,61 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+      body: Container(
+//        child: Column(
+//          // Column is also layout widget. It takes a list of children and
+//          // arranges them vertically. By default, it sizes itself to fit its
+//          // children horizontally, and tries to be as tall as its parent.
+//          //
+//          // Invoke "debug painting" (press "p" in the console, choose the
+//          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+//          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+//          // to see the wireframe for each widget.
+//          //
+//          // Column has various properties to control how it sizes itself and
+//          // how it positions its children. Here we use mainAxisAlignment to
+//          // center the children vertically; the main axis here is the vertical
+//          // axis because Columns are vertical (the cross axis would be
+//          // horizontal).
+//          mainAxisAlignment: MainAxisAlignment.center,
+//          children: [
+//            new Card(
+//              child: Column(
+//                mainAxisSize: MainAxisSize.min,
+//                children: <Widget>[
+//                  const ListTile(
+//                    leading: Icon(Icons.album),
+//                    title: Text(
+//                      'قيد الإنتظار',
+//                      textAlign: TextAlign.center,
+//                      style: TextStyle(
+//                        fontSize: 50.0,
+//                      ),
+//                    ),
+//                  ),
+//                ],
+//              ),
+//              color: Colors.blue,
+//            ),
+//          ],
+//        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            // Where the linear gradient begins and ends
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            // Add one stop for each color. Stops should increase from 0 to 1
+            stops: [0.1, 0.3, 0.5, 0.9],
+            colors: [
+              // Colors are easy thanks to Flutter's Colors class.
+              Colors.lightBlue[800],
+              Colors.lightBlue[700],
+              Colors.lightBlue[600],
+              Colors.lightBlue[500],
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
