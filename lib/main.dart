@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:matching_game/shapes_game.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,7 +36,7 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepOrange,
       ),
       home: MyHomePage(title: 'لعبة المطابقة'),
     );
@@ -60,18 +62,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,56 +78,80 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-//        child: Column(
-//          // Column is also layout widget. It takes a list of children and
-//          // arranges them vertically. By default, it sizes itself to fit its
-//          // children horizontally, and tries to be as tall as its parent.
-//          //
-//          // Invoke "debug painting" (press "p" in the console, choose the
-//          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-//          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-//          // to see the wireframe for each widget.
-//          //
-//          // Column has various properties to control how it sizes itself and
-//          // how it positions its children. Here we use mainAxisAlignment to
-//          // center the children vertically; the main axis here is the vertical
-//          // axis because Columns are vertical (the cross axis would be
-//          // horizontal).
-//          mainAxisAlignment: MainAxisAlignment.center,
-//          children: [
-//            new Card(
-//              child: Column(
-//                mainAxisSize: MainAxisSize.min,
-//                children: <Widget>[
-//                  const ListTile(
-//                    leading: Icon(Icons.album),
-//                    title: Text(
-//                      'قيد الإنتظار',
-//                      textAlign: TextAlign.center,
-//                      style: TextStyle(
-//                        fontSize: 50.0,
-//                      ),
-//                    ),
-//                  ),
-//                ],
-//              ),
-//              color: Colors.blue,
-//            ),
-//          ],
-//        ),
+        child: Column(
+          // Column is also layout widget. It takes a list of children and
+          // arranges them vertically. By default, it sizes itself to fit its
+          // children horizontally, and tries to be as tall as its parent.
+          //
+          // Invoke "debug painting" (press "p" in the console, choose the
+          // "Toggle Debug Paint" action from the Flutter Inspector in Android
+          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+          // to see the wireframe for each widget.
+          //
+          // Column has various properties to control how it sizes itself and
+          // how it positions its children. Here we use mainAxisAlignment to
+          // center the children vertically; the main axis here is the vertical
+          // axis because Columns are vertical (the cross axis would be
+          // horizontal).
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FlatButton(
+              child: new GradientCard(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const ListTile(
+                      leading: Icon(Icons.album),
+                      title: Text(
+                        '',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 50.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                gradient: LinearGradient(
+                  // Where the linear gradient begins and ends
+                  begin: Alignment.bottomLeft,
+                  end: Alignment.topRight,
+                  // Add one stop for each color. Stops should increase from 0 to 1
+                  stops: [0.3,0.5, 0.7, 0.9],
+                  colors: [
+                    Colors.amber[500],
+                    Colors.amber[600],
+                    Colors.amber[700],
+                    Colors.amber[800],
+                  ],
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ShapesGame()),
+                );
+              },
+            ),
+          ],
+        ),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             // Where the linear gradient begins and ends
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
+            begin: Alignment.bottomLeft,
+            end: Alignment.topRight,
             // Add one stop for each color. Stops should increase from 0 to 1
-            stops: [0.1, 0.3, 0.5, 0.9],
+            stops: [0.3,0.5, 0.7, 0.9],
             colors: [
-              // Colors are easy thanks to Flutter's Colors class.
-              Colors.lightBlue[800],
-              Colors.lightBlue[700],
-              Colors.lightBlue[600],
-              Colors.lightBlue[500],
+//              const Color(0xffffc400),
+//              const Color(0xffffcc00),
+//              const Color(0xffffe700),
+//              const Color(0xfffff600),
+                Colors.red[600],
+                Colors.red[700],
+                Colors.red[800],
+                Colors.red[900],
+
             ],
           ),
         ),
