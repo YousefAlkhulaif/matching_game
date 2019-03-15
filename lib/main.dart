@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:matching_game/shapes_game.dart';
+import 'package:matching_game/common/custom_button.dart';
+import 'package:matching_game/global.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,7 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Matching Game',
+      theme: Global.getThemeData(),
       builder: (BuildContext context, Widget child) {
         return new Directionality(
           textDirection: TextDirection.rtl,
@@ -25,19 +27,6 @@ class MyApp extends StatelessWidget {
           ),
         );
       },
-      theme: ThemeData(
-        brightness: Brightness.light,
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.deepOrange,
-      ),
       home: MyHomePage(title: 'لعبة المطابقة'),
     );
   }
@@ -45,15 +34,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
 
   final String title;
 
@@ -72,90 +52,38 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Container(
-        child: Column(
-          // Column is also layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton(
-              child: new GradientCard(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    const ListTile(
-                      leading: Icon(Icons.album),
-                      title: Text(
-                        '',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 50.0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                gradient: LinearGradient(
-                  // Where the linear gradient begins and ends
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  // Add one stop for each color. Stops should increase from 0 to 1
-                  stops: [0.3,0.5, 0.7, 0.9],
-                  colors: [
-                    Colors.amber[500],
-                    Colors.amber[600],
-                    Colors.amber[700],
-                    Colors.amber[800],
-                  ],
-                ),
+      body: Center(
+        child: Container(
+          color: Theme.of(context).accentColor,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 80),
+                  child: Text(widget.title, style: Theme.of(context).textTheme.headline)
+                )
               ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ShapesGame()),
-                );
-              },
-            ),
-          ],
-        ),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            // Where the linear gradient begins and ends
-            begin: Alignment.bottomLeft,
-            end: Alignment.topRight,
-            // Add one stop for each color. Stops should increase from 0 to 1
-            stops: [0.3,0.5, 0.7, 0.9],
-            colors: [
-//              const Color(0xffffc400),
-//              const Color(0xffffcc00),
-//              const Color(0xffffe700),
-//              const Color(0xfffff600),
-                Colors.red[600],
-                Colors.red[700],
-                Colors.red[800],
-                Colors.red[900],
-
+              Expanded(
+                flex: 4,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    // TODO: navigate to correct routes
+                    CustomButton('مَيِّز', Colors.green[200], Colors.green[800], ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => ShapesGame()))),
+                    CustomButton('طَابِق', Colors.yellow[200], Colors.yellow[800], ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => ShapesGame()))),
+                    CustomButton('مُنَوَّع', Colors.blue[200], Colors.blue[800], ()=>Navigator.push(context, MaterialPageRoute(builder: (context) => ShapesGame()))),
+                  ],
+                ),
+              )
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }

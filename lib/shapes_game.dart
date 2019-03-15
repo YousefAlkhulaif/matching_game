@@ -57,7 +57,7 @@ class ShapesGame extends StatelessWidget{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('مُنَوّع'),
       ),
       body: Container(
         child: Column(
