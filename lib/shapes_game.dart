@@ -7,7 +7,7 @@ import 'package:matching_game/card_image.dart';
 class ShapesGame extends StatelessWidget{
   List<int> generatedPhoto() {
     var photosIndexes = new List<int>();
-    for (int i = 0;i<16;i++){
+    for (int i = 0;i<25;i++){
       photosIndexes.add(i+1);
     }
     var photosIndexesSaved = new List<int>();
