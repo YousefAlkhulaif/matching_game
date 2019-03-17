@@ -3,11 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:matching_game/card_image.dart';
 
+
+class ShapesGame extends StatefulWidget {
+  ShapesGame({Key key}) : super(key: key);
+
+  // This widget is the home page of your application. It is stateful, meaning
+  // that it has a State object (defined below) that contains fields that affect
+  // how it looks.
+
+  // This class is the configuration for the state. It holds the values (in this
+  // case the title) provided by the parent (in this case the App widget) and
+  // used by the build method of the State. Fields in a Widget subclass are
+  // always marked "final".
+
+
+  @override
+  _ShapesGameState createState() => _ShapesGameState();
+}
 // ignore: must_be_immutable
-class ShapesGame extends StatelessWidget{
+class _ShapesGameState extends State<ShapesGame>{
+  List<int> setPhotosIndexes() {
+    var indexes;
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      indexes = generatedPhoto();
+    });
+    return indexes;
+  }
   List<int> generatedPhoto() {
     var photosIndexes = new List<int>();
-    for (int i = 0;i<25;i++){
+    for (int i = 25;i<32;i++){
       photosIndexes.add(i+1);
     }
     var photosIndexesSaved = new List<int>();
@@ -21,7 +50,7 @@ class ShapesGame extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    var photoIndexes = generatedPhoto();
+    var photoIndexes = setPhotosIndexes();
       var mainImageIndex =  photoIndexes.elementAt(0);
     Widget cardImage = Card(
       child: ClipRRect(
@@ -37,9 +66,21 @@ class ShapesGame extends StatelessWidget{
         builder: (BuildContext context) {
           // return object of type Dialog
           return AlertDialog(
-            title: new Text("Alert Dialog title"),
+            title: new Text("إجابة صحيحة!"),
             content: Container(
-                child: new CustomCard(100),
+              child: Column(
+                children: <Widget>[
+                  new CustomCard(50),
+                  new Text(
+                    "أحسنت!",
+                    textScaleFactor: 5,
+                    style: TextStyle(
+                      inherit: true,
+                      color: Colors.deepOrange
+                    ),
+                  ),
+                ],
+              ),
             ),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
@@ -47,6 +88,7 @@ class ShapesGame extends StatelessWidget{
                 child: new Text("Close"),
                 onPressed: () {
                   Navigator.of(context).pop();
+                  setPhotosIndexes();
                 },
               ),
             ],
@@ -137,3 +179,4 @@ class ShapesGame extends StatelessWidget{
     );
   }
 }
+
