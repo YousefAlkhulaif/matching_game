@@ -99,7 +99,7 @@ class _ShapesGameState extends State<ShapesGame>{
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Text('مُنَوّع'),
       ),
       body: Container(
         child: Column(
