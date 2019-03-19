@@ -95,8 +95,22 @@ class _ShapesGameState extends State<ShapesGame>{
             ),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
-              new FlatButton(
-                child: new Text("إغلاق"),
+              new FlatButton(child: Card(
+                child: Container(
+                  child: new Text(
+                    "حسنًا",
+                    style: TextStyle(
+                      inherit: true,
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                  width: 160.0,
+                  height: 35.0,
+                  margin: EdgeInsets.fromLTRB(0,20,130,0),
+                ),
+                color: widget.complementaryColor,
+              ),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setPhotosIndexes();
@@ -121,7 +135,22 @@ class _ShapesGameState extends State<ShapesGame>{
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
               new FlatButton(
-                child: Card(child: new Text("إغلاق")),
+                child: Card(
+                    child: Container(
+                        child: new Text(
+                            "حسنًا",
+                          style: TextStyle(
+                            inherit: true,
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
+                      width: 160.0,
+                      height: 35.0,
+                      margin: EdgeInsets.fromLTRB(0,20,130,0),
+                    ),
+                    color: widget.complementaryColor,
+                ),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -140,19 +169,22 @@ class _ShapesGameState extends State<ShapesGame>{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            DragTarget(
-                builder: (context, List<int> candidateData, rejectedData) {
+            Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: DragTarget(
+                  builder: (context, List<int> candidateData, rejectedData) {
 
-              return cardImage;
+                return cardImage;
 
-            },
-                onAccept: (data) {
-              if (data == mainImageIndex) {
-                _showRightDialog();
-              } else {
-                _showWrongDialog();
-              }
-            }),
+              },
+                  onAccept: (data) {
+                if (data == mainImageIndex) {
+                  _showRightDialog();
+                } else {
+                  _showWrongDialog();
+                }
+              }),
+            ),
             Flexible(
               flex: 1,
               child: GridView.count(
@@ -161,7 +193,7 @@ class _ShapesGameState extends State<ShapesGame>{
 
                 childAspectRatio: 1.31,
                 crossAxisSpacing: 0.0,
-                padding: EdgeInsets.only(top: 2),
+                padding: EdgeInsets.only(top: 80),
                 children: <Widget>[
                   new CustomCard(photoIndexes[0]),
                   new CustomCard(photoIndexes[1]),
