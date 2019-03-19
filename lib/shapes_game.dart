@@ -91,7 +91,7 @@ class _ShapesGameState extends State<ShapesGame>{
           return AlertDialog(
             title: new Text("إجابة صحيحة!"),
             content: Container(
-              child: CustomCard(51),
+              child: CustomCard(55),
             ),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
@@ -193,7 +193,7 @@ class _ShapesGameState extends State<ShapesGame>{
 
                 childAspectRatio: 1.31,
                 crossAxisSpacing: 0.0,
-                padding: EdgeInsets.only(top: 80),
+                padding: EdgeInsets.only(top: 25),
                 children: <Widget>[
                   new CustomCard(photoIndexes[0]),
                   new CustomCard(photoIndexes[1]),

@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   CustomButton(
-                  shapesModeString,
+                  imagesModeString,
                       Colors.green[200],
                       Colors.green[800],
                       () => Navigator.push(
@@ -87,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           MaterialPageRoute(
                               builder: (context) => ShapesGame(imagesMode, Colors.lightGreen, imagesModeString, Colors.lightBlue)))),
                   CustomButton(
-                      imagesModeString,
+                      shapesModeString,
                       Colors.yellow[200],
                       Colors.yellow[800],
                       () => Navigator.push(
