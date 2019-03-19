@@ -82,7 +82,7 @@ class _ShapesGameState extends State<ShapesGame>{
       ),
     );
     photoIndexes.shuffle();
-    void _showDialog() {
+    void _showRightDialog() {
       // flutter defined function
       showDialog(
         context: context,
@@ -91,24 +91,12 @@ class _ShapesGameState extends State<ShapesGame>{
           return AlertDialog(
             title: new Text("إجابة صحيحة!"),
             content: Container(
-              child: Column(
-                children: <Widget>[
-                  new CustomCard(50),
-                  new Text(
-                    "أحسنت!",
-                    textScaleFactor: 5,
-                    style: TextStyle(
-                      inherit: true,
-                      color: Colors.deepOrange
-                    ),
-                  ),
-                ],
-              ),
+              child: CustomCard(51),
             ),
             actions: <Widget>[
               // usually buttons at the bottom of the dialog
               new FlatButton(
-                child: new Text("Close"),
+                child: new Text("إغلاق"),
                 onPressed: () {
                   Navigator.of(context).pop();
                   setPhotosIndexes();
@@ -119,7 +107,30 @@ class _ShapesGameState extends State<ShapesGame>{
         },
       );
     }
-
+    void _showWrongDialog() {
+      // flutter defined function
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("حاول مرة أخرى"),
+            content: Container(
+              child: CustomCard(52),
+            ),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: Card(child: new Text("إغلاق")),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -137,9 +148,9 @@ class _ShapesGameState extends State<ShapesGame>{
             },
                 onAccept: (data) {
               if (data == mainImageIndex) {
-                _showDialog();
+                _showRightDialog();
               } else {
-                print('no!:(');
+                _showWrongDialog();
               }
             }),
             Flexible(
