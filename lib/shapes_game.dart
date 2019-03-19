@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:matching_game/card_image.dart';
-import 'package:matching_game/global.dart';
 
 
 class ShapesGame extends StatefulWidget {
